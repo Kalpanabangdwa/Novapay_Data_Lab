@@ -1,0 +1,39 @@
+name: 'novapay_data_lab'
+version: '1.0.0'
+profile: 'novapay_data_lab'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  novapay_data_lab:
+
+    staging:
+
+      crm:
+        +database: NOVAPAY_STAGING
+        +schema: CRM
+
+      transactions:
+        +database: NOVAPAY_STAGING
+        +schema: TRANSACTIONS
+
+      vendor:
+        +database: NOVAPAY_STAGING
+        +schema: VENDOR
+
+      reference:
+        +database: NOVAPAY_STAGING
+        +schema: REFERENCE
+
+    marts:
+      +database: NOVAPAY_DWH
+      +schema: PUBLIC

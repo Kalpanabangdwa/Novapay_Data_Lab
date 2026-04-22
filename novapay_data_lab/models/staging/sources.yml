@@ -1,0 +1,42 @@
+version: 2
+
+sources:
+  - name: crm_sources
+    database: NOVAPAY_RAW
+    schema: CRM
+    loaded_at_field: _LOADED_AT
+    freshness:
+      warn_after: {count: 24, period: hour}
+    tables:
+      - name: customers
+      - name: customer_interactions
+
+  - name: transaction_sources
+    database: NOVAPAY_RAW
+    schema: TRANSACTIONS
+    loaded_at_field: _LOADED_AT
+    freshness:
+      warn_after: {count: 24, period: hour}
+    tables:
+      - name: payments
+      - name: accounts
+      - name: merchants
+
+  - name: vendor_sources
+    database: NOVAPAY_RAW
+    schema: VENDOR
+    loaded_at_field: _LOADED_AT
+    freshness:
+      warn_after: {count: 24, period: hour}
+    tables:
+      - name: credit_scores
+      - name: product_catalog
+
+  - name: reference_sources
+    database: NOVAPAY_RAW
+    schema: REFERENCE
+    loaded_at_field: _LOADED_AT
+    freshness:
+      warn_after: {count: 24, period: hour}
+    tables:
+      - name: country_codes
