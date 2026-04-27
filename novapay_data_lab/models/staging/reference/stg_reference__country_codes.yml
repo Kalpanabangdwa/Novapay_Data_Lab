@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_reference__country_codes
+    columns:
+
+      - name: country_code_2
+        tests:
+          - unique
+          - not_null

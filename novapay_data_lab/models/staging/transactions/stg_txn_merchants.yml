@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_txn_merchants
+    columns:
+
+      - name: merchant_id
+        tests:
+          - unique
+          - not_null
