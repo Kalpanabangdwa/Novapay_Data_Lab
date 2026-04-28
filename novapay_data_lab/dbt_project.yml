@@ -36,4 +36,11 @@ models:
 
     marts:
       +database: NOVAPAY_DWH
-      +schema: PUBLIC
+      +schema: DIMENSIONAL
+      +materialized: table
+
+
+snapshots:
+  novapay_data_lab:
+    +target_database: NOVAPAY_DWH
+    +target_schema: SNAPSHOTS
