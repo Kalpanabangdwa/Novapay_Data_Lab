@@ -34,11 +34,15 @@ models:
         +database: NOVAPAY_STAGING
         +schema: REFERENCE
 
+    intermediate:
+      +database: NOVAPAY_DWH
+      +schema: INTERMEDIATE
+      +materialized: view
+
     marts:
       +database: NOVAPAY_DWH
       +schema: DIMENSIONAL
       +materialized: table
-
 
 snapshots:
   novapay_data_lab:
