@@ -34,10 +34,20 @@ models:
         +database: NOVAPAY_STAGING
         +schema: REFERENCE
 
+      dv:
+        +database: NOVAPAY_STAGING
+        +schema: PUBLIC
+        +materialized: view
+
     intermediate:
       +database: NOVAPAY_DWH
       +schema: INTERMEDIATE
       +materialized: view
+
+      data_vault:
+        +database: NOVAPAY_DWH
+        +schema: DATA_VAULT
+        +materialized: table
 
     marts:
       +database: NOVAPAY_DWH

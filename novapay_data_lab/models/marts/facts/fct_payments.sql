@@ -5,15 +5,34 @@
     incremental_strategy='merge'
 ) }}
 
-with source as (
+with max_date as (
+
+    {% if is_incremental() %}
+
+        select
+            dateadd(day, -3, max(date_key)) as max_payment_date
+        from {{ this }}
+
+    {% else %}
+
+        select null as max_payment_date
+
+    {% endif %}
+
+),
+
+source as (
 
     select *
     from {{ ref('int_payments_enriched') }}
 
     {% if is_incremental() %}
+
         where payment_date >= (
-            select dateadd(day, -3, max(payment_date)) from {{ this }}
+            select max_payment_date
+            from max_date
         )
+
     {% endif %}
 
 )
